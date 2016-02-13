@@ -177,40 +177,82 @@ GameLoop:
       move.w #0x1408, d1                                                       ; XY (20, 8)
 @Pad1ButtonCDone:
       jsr DrawTextPlaneA                                                       ; Call draw text subroutine
-; ***********************
-; Test Code
-; ***********************
-     move.w (controllerinput), d0                                             ; restore controller input from memory
 
-      btst #pad_button_x, d0                                                   ; Check C button
+     move.w (controllerinput), d0                                              ; restore controller input from memory
+
+      btst #pad_button_x, d0                                                   ; Check X button
       bne @Pad1NoButtonX                                                       ; Branch if button off
       lea PressedString, a0                                                    ; String address
       move.l #PixelFontTileID, d0                                              ; First tile id
-      move.w #0x0C04, d1                                                       ; XY (20, 8)
+      move.w #0x0C04, d1                                                       ; XY (12, 4)
       bra @Pad1ButtonXDone                                                     ; branch when finished
 @Pad1NoButtonX:
       lea NotPressedString, a0                                                 ; String address
       move.l #PixelFontTileID, d0                                              ; First tile id
-      move.w #0x0C04, d1                                                       ; XY (20, 4)
+      move.w #0x0C04, d1                                                       ; XY (12, 4)
 @Pad1ButtonXDone:
       jsr DrawTextPlaneA
-; ***********************
-; End Test Code
-; ***********************
+
+     move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_y, d0                                                   ; Check Y button
+      bne @Pad1NoButtonY                                                       ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1004, d1                                                       ; XY (16, 4)
+      bra @Pad1ButtonYDone                                                     ; branch when finished
+@Pad1NoButtonY:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1004, d1                                                       ; XY (16, 4)
+@Pad1ButtonYDone:
+      jsr DrawTextPlaneA
+
+     move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_z, d0                                                   ; Check Z button
+      bne @Pad1NoButtonZ                                                       ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1404, d1                                                       ; XY (20, 4)
+      bra @Pad1ButtonZDone                                                     ; branch when finished
+@Pad1NoButtonZ:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1404, d1                                                       ; XY (20, 4)
+@Pad1ButtonZDone:
+      jsr DrawTextPlaneA
+
       move.w (controllerinput), d0                                             ; restore controller input from memory
 
-      btst #pad_button_start, d0                                               ; Check C button
+      btst #pad_button_start, d0                                               ; Check start button
       bne @Pad1NoButtonStart                                                   ; Branch if button off
       lea PressedString, a0                                                    ; String address
       move.l #PixelFontTileID, d0                                              ; First tile id
-      move.w #0x080C, d1                                                       ; XY (20, 13)
+      move.w #0x080C, d1                                                       ; XY (08, 12)
       bra @Pad1ButtonStartDone                                                 ; branch when finished
 @Pad1NoButtonStart:
       lea NotPressedString, a0                                                 ; String address
       move.l #PixelFontTileID, d0                                              ; First tile id
-      move.w #0x080C, d1                                                       ; XY (20, 13)
+      move.w #0x080C, d1                                                       ; XY (08, 12)
 @Pad1ButtonStartDone:
+      jsr DrawTextPlaneA                                                       ; Call draw text subroutine      
+
+      move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_mode, d0                                                ; Check mode button
+      bne @Pad1NoButtonMode                                                   ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1801, d1                                                       ; XY (24, 1)
+      bra @Pad1ButtonModeDone                                                 ; branch when finished
+@Pad1NoButtonMode:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1801, d1                                                       ; XY (24, 1)
+@Pad1ButtonModeDone:
       jsr DrawTextPlaneA                                                       ; Call draw text subroutine
+
 ; **********************
 ; Controller 2 Test
 ; **********************
@@ -274,6 +316,126 @@ GameLoop:
       move.l #PixelFontTileID, d0                                              ; First tile id
       move.w #0x0712, d1                                                       ; XY (7, 18)
 @Pad2RightDone:
+      jsr DrawTextPlaneA                                                       ; Call draw text subroutine
+
+      move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_a, d0                                                   ; Check A button
+      bne @Pad2NoButtonA                                                       ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x0C17, d1                                                       ; XY (13, 8)
+      bra @Pad2ButtonADone                                                     ; branch when finished
+@Pad2NoButtonA:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x0C17, d1                                                       ; XY (13, 8)
+@Pad2ButtonADone:
+      jsr DrawTextPlaneA                                                       ; Call draw text subroutine
+
+      move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_b, d0                                                   ; Check B button
+      bne @Pad2NoButtonB                                                                 ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1017, d1                                                       ; XY (16, 8)
+      bra @Pad2ButtonBDone                                                     ; branch when finished
+@Pad2NoButtonB:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1017, d1                                                       ; XY (16, 8)
+@Pad2ButtonBDone:
+      jsr DrawTextPlaneA                                                       ; Call draw text subroutine
+
+      move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_c, d0                                                   ; Check C button
+      bne @Pad2NoButtonC                                                       ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1417, d1                                                       ; XY (20, 8)
+      bra @Pad2ButtonCDone                                                     ; branch when finished
+@Pad2NoButtonC:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1417, d1                                                       ; XY (20, 8)
+@Pad2ButtonCDone:
+      jsr DrawTextPlaneA                                                       ; Call draw text subroutine
+
+      move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_x, d0                                                   ; Check X button
+      bne @Pad2NoButtonX                                                       ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x0C13, d1                                                       ; XY (12, 15)
+      bra @Pad2ButtonXDone                                                     ; branch when finished
+@Pad2NoButtonX:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x0C13, d1                                                       ; XY (12, 15)
+@Pad2ButtonXDone:
+      jsr DrawTextPlaneA
+
+      move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_y, d0                                                   ; Check Y button
+      bne @Pad2NoButtonY                                                       ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1013, d1                                                       ; XY (16, 15)
+      bra @Pad2ButtonYDone                                                     ; branch when finished
+@Pad2NoButtonY:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1013, d1                                                       ; XY (16, 15)
+@Pad2ButtonYDone:
+      jsr DrawTextPlaneA
+
+      move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_z, d0                                                   ; Check Z button
+      bne @Pad2NoButtonZ                                                       ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1413, d1                                                       ; XY (20, 15)
+      bra @Pad2ButtonZDone                                                     ; branch when finished
+@Pad2NoButtonZ:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1413, d1                                                       ; XY (20, 15)
+@Pad2ButtonZDone:
+      jsr DrawTextPlaneA
+
+      move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_start, d0                                               ; Check start button
+      bne @Pad2NoButtonStart                                                   ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x081A, d1                                                       ; XY (08, 26)
+      bra @Pad2ButtonStartDone                                                 ; branch when finished
+@Pad2NoButtonStart:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x081A, d1                                                       ; XY (08, 26)
+@Pad2ButtonStartDone:
+      jsr DrawTextPlaneA                                                       ; Call draw text subroutine      
+
+      move.w (controllerinput), d0                                             ; restore controller input from memory
+
+      btst #pad_button_mode, d0                                                ; Check mode button
+      bne @Pad2NoButtonMode                                                    ; Branch if button off
+      lea PressedString, a0                                                    ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1810, d1                                                       ; XY (24, 16)
+      bra @Pad2ButtonModeDone                                                  ; branch when finished
+@Pad2NoButtonMode:
+      lea NotPressedString, a0                                                 ; String address
+      move.l #PixelFontTileID, d0                                              ; First tile id
+      move.w #0x1810, d1                                                       ; XY (24, 16)
+@Pad2ButtonModeDone:
       jsr DrawTextPlaneA                                                       ; Call draw text subroutine
 
       jsr WaitVBlankStart                                                      ; Wait for start of vblank
